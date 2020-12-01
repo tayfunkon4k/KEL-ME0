@@ -19,7 +19,7 @@ class User:
         return self.rating
 
     def get_rating_str(self):
-        return self.username + ": " + str(self.rating) + " "
+        return self.username + ": " + str(self.rating) + "\n"
 
 
 class Game:
