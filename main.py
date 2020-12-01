@@ -38,7 +38,7 @@ def setup_logger():
 
 def help(update, context):
     update.message.reply_text('DeerWords Komut Listesi:\n' +
-                              '/start - Yeni Bir Oyun Başlatın\n' +
+                              '/basla - Yeni Bir Oyun Başlatın\n' +
                               '/master - Sunucu Olmak\n' +
                               '/rating - Skor Tablosu', reply_to_message_id=True)
 
@@ -71,7 +71,7 @@ def command_start(update, context: CallbackContext):
         user_id = update.message.from_user.id
         username = update.message.from_user.full_name
 
-        logger.info('Got command /start,'
+        logger.info('Got command /basla,'
                     'chat_id={},'
                     'user_id'.format(chat_id,
                                      user_id))
@@ -225,12 +225,13 @@ def main():
 
     dp = updater.dispatcher
 
-    dp.add_handler(CommandHandler("start", command_start))
+    dp.add_handler(CommandHandler("basla", command_start))
     dp.add_handler(CommandHandler("master", command_master))
     dp.add_handler(CommandHandler("show_word", command_show_word))
     dp.add_handler(CommandHandler("change_word", command_change_word))
     dp.add_handler(CommandHandler("rating", command_rating))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("start", help))
 
     dp.add_handler(CallbackQueryHandler(button))
 
