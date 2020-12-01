@@ -65,7 +65,7 @@ def button(update, context):
 
 def command_start(update, context: CallbackContext):
     if update.effective_chat.type == "private":
-        pass
+        update.message.reply_text('Lütfen Beni Bir Gruba Ekleyin!', reply_to_message_id=True)
     else:
         chat_id = update.message.chat.id
         user_id = update.message.from_user.id
