@@ -86,7 +86,7 @@ def command_start(update, context: CallbackContext):
 
 def set_master(update, context):
     chat_id = update.message.chat.id
-    user_id = update.message_from_user.id
+    user_id = update.message.from_user.id
     username = update.message.from_user.full_name
     logger.info('chat_id={}, New master is "{}"({})'.format(chat_id,
                                                             username,
