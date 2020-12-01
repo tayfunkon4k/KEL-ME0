@@ -65,7 +65,11 @@ def button(update, context):
 
 def command_start(update, context: CallbackContext):
     if update.effective_chat.type == "private":
-        update.message.reply_text('Lütfen Beni Bir Gruba Ekleyin!', reply_to_message_id=True)
+        
+    addme = InlineKeyboardButton("🕹Beni Bir Gruba Ekleyin!", url= "http://t.me/deerwordbot?startgroup=true")
+    keyboard = [[addme]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+        update.message.reply_text('Özel Mesajda Oyun Başlatılamaz!', reply_to_message_id=True, reply_markup=reply_markup)
     else:
         chat_id = update.message.chat.id
         user_id = update.message.from_user.id
