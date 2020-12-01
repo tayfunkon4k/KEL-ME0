@@ -37,10 +37,10 @@ def setup_logger():
 
 
 def help(update, context):
-    update.message.reply_text('Игра Крокодил. Список комманд: ' +
-                              '/start - Начать новую игру ' +
-                              ' /master - Стать ведущим ' +
-                              '         /rating - Ретинг игроков', reply_to_message_id=True)
+    update.message.reply_text('DeerWords Komut Listesi:\n' +
+                              '/start - Yeni Bir Oyun Başlatın\n' +
+                              '/master - Sunucu Olmak\n' +
+                              '/rating - Skor Tablosu', reply_to_message_id=True)
 
 
 def button(update, context):
@@ -76,7 +76,7 @@ def command_start(update, context: CallbackContext):
     game = get_or_create_game(chat_id)
     game.start()
 
-    update.message.reply_text('Игра Крокодил началась'.format(username), reply_to_message_id=True)
+    update.message.reply_text('DeerWord Oyunu Başladı📣'.format(username), reply_to_message_id=True)
 
     set_master(update, context)
 
@@ -92,8 +92,8 @@ def set_master(update, context):
 
     game.set_master(update.message.from_user.id)
 
-    show_word_btn = InlineKeyboardButton("Показать слово", callback_data='show_word')
-    change_word_btn = InlineKeyboardButton("Поменять слово", callback_data='change_word')
+    show_word_btn = InlineKeyboardButton("🔔Kelimeyi Göster", callback_data='show_word')
+    change_word_btn = InlineKeyboardButton("❗Kelimeyi Değiştir", callback_data='change_word')
 
     keyboard = [[show_word_btn], [change_word_btn]]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -111,7 +111,7 @@ def command_master(update: Update, context):
         return
 
     if not game.is_master_time_left():
-        update.message.reply_text('Осталось {} сек., чтобы стать ведущим'.format(game.get_master_time_left()),
+        update.message.reply_text('Lider olmak için {} saniye kaldı'.format(game.get_master_time_left()),
                                   reply_to_message_id=True)
         return
 
@@ -193,7 +193,7 @@ def is_word_answered(update, context):
     word = game.get_current_word()
 
     if game.is_word_answered(user_id, text):
-        update.message.reply_text('Слово {} отгадал игрок {}'.format(word, username), reply_to_message_id=True)
+        update.message.reply_text('{} Kelimesi {} Tarafından Doğru Bir Şekilde Tahmin Edildi✅'.format(word, username), reply_to_message_id=True)
 
         game.update_rating(user_id, username)
 
