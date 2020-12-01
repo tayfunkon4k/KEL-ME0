@@ -86,6 +86,7 @@ def command_start(update, context: CallbackContext):
 
 def set_master(update, context):
     chat_id = update.message.chat.id
+    user_id = update.message_from_user.id
     username = update.message.from_user.full_name
     logger.info('chat_id={}, New master is "{}"({})'.format(chat_id,
                                                             username,
@@ -101,7 +102,7 @@ def set_master(update, context):
     keyboard = [[show_word_btn], [change_word_btn]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text('Sıradaki Oyuncu [{}](tg://user?id={})'.format(username,update.from_user.id), reply_to_message_id=True, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+    update.message.reply_text('Sıradaki Oyuncu [{}](tg://user?id={})'.format(username,user_id), reply_to_message_id=True, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
 
 def command_master(update: Update, context):
