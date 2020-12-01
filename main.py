@@ -55,7 +55,7 @@ def button(update, context):
     if query.data == 'show_word':
         word = game.get_word(user_id)
         if game.is_master(query.from_user.id):
-            bot.answer_callback_query(callback_query_id=query.id, is_personal=True, text=word, show_alert=True)
+            bot.answer_callback_query(callback_query_id=query.id, text=word, show_alert=True)
 
     if query.data == 'change_word':
         word = game.change_word(user_id)
