@@ -235,7 +235,7 @@ def main():
     dp.add_handler(CommandHandler("change_word", command_change_word))
     dp.add_handler(CommandHandler("rating", command_rating))
     dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(CommandHandler("start", help))
+    dp.add_handler(CommandHandler("start", command_start))
 
     dp.add_handler(CallbackQueryHandler(button))
 
