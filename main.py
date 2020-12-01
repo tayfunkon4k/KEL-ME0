@@ -98,7 +98,7 @@ def set_master(update, context):
     keyboard = [[show_word_btn], [change_word_btn]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text('Ведущий {}'.format(username), reply_to_message_id=True, reply_markup=reply_markup)
+    update.message.reply_text('Sıradaki Oyuncu {}'.format(username), reply_to_message_id=True, reply_markup=reply_markup)
 
 
 def command_master(update: Update, context):
