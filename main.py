@@ -64,21 +64,24 @@ def button(update, context):
 
 
 def command_start(update, context: CallbackContext):
-    chat_id = update.message.chat.id
-    user_id = update.message.from_user.id
-    username = update.message.from_user.full_name
+    if update.effective_chat.type == "private":
+        pass
+    else:
+        chat_id = update.message.chat.id
+        user_id = update.message.from_user.id
+        username = update.message.from_user.full_name
 
-    logger.info('Got command /start,'
-                'chat_id={},'
-                'user_id'.format(chat_id,
-                                 user_id))
+        logger.info('Got command /start,'
+                    'chat_id={},'
+                    'user_id'.format(chat_id,
+                                     user_id))
 
-    game = get_or_create_game(chat_id)
-    game.start()
+        game = get_or_create_game(chat_id)
+        game.start()
 
-    update.message.reply_text('DeerWord Oyunu Başladı📣'.format(username), reply_to_message_id=True)
+        update.message.reply_text('DeerWord Oyunu Başladı📣'.format(username), reply_to_message_id=True)
 
-    set_master(update, context)
+        set_master(update, context)
 
 
 def set_master(update, context):
