@@ -197,7 +197,7 @@ def is_word_answered(update, context):
     word = game.get_current_word()
 
     if game.is_word_answered(user_id, text):
-        update.message.reply_text('*{}* Kelimesi {} Tarafından Doğru Bir Şekilde Tahmin Edildi✅'.format(word, username), reply_to_message_id=True, parse_mode=ParseMode.MARKDOWN)
+        update.message.reply_text('*{}* Kelimesi [{}](tg://user?id={}) Tarafından Doğru Bir Şekilde Tahmin Edildi✅'.format(word, username,user_id), reply_to_message_id=True, parse_mode=ParseMode.MARKDOWN)
 
         game.update_rating(user_id, username)
 
