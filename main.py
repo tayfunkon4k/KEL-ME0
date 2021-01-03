@@ -8,14 +8,15 @@ from telegram import ParseMode, ReplyKeyboardMarkup, Update, InlineKeyboardButto
 
 from game import Game
 import settings
-
+import sqlite3 as sql
 rating_dict = {}
 
 logger = None
 
 games = {}
 
-
+db = sql.connect("users.db")
+vt = db.cursor()
 def get_or_create_game(chat_id: int) -> Game:
     global games
     game = games.get(chat_id, None)
