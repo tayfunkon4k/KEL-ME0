@@ -10,13 +10,14 @@ from game import Game
 import settings
 import sqlite3 as sql
 rating_dict = {}
-
 logger = None
 
 games = {}
 
 db = sql.connect("users.db")
 vt = db.cursor()
+vt.execute("CREATE TABLE IF NOT EXISTS Users(userid INT, username TEXT, rating INT)")
+db.commit()
 def get_or_create_game(chat_id: int) -> Game:
     global games
     game = games.get(chat_id, None)
@@ -208,7 +209,8 @@ def is_word_answered(update, context):
         update.message.reply_text('*{}* Kelimesi [{}](tg://user?id={}) Tarafından Doğru Bir Şekilde Tahmin Edildi✅'.format(word, username,user_id), reply_to_message_id=True, parse_mode=ParseMode.MARKDOWN)
 
         game.update_rating(user_id, username)
-
+        vt.execute("SELECT * FROM Users WHERE userid = user_id)
+        i
         set_master(update, context)
 
     logger.info('Guessing word,'
